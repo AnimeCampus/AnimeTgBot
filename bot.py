@@ -3,10 +3,10 @@ from pyrogram import Client, filters
 from pyrogram.types import InputFile, InlineQuery, InlineQueryResultPhoto
 
 # Replace with your own API_ID, API_HASH, and BOT_TOKEN
-API_ID = "your_api_id"
-API_HASH = "your_api_hash"
+API_ID = "19099900"
+API_HASH = "2b445de78e5baf012a0793e60bd4fbf5"
 BOT_TOKEN = "your_bot_token"
-RAPIDAPI_KEY = "your_rapidapi_key"
+RAPIDAPI_KEY = "e738a41537msh518a25cf253209fp13958fjsn07ed13e97c48"
 
 # Initialize the Pyrogram client
 app = Client("my_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
