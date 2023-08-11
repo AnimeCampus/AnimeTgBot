@@ -1,12 +1,13 @@
 import requests
 from pyrogram import Client, filters
-from pyrogram.types import InputFile, InlineQuery, InlineQueryResultPhoto
+from pyrogram.types import InlineQueryResultPhoto
 
 # Replace with your own API_ID, API_HASH, and BOT_TOKEN
 API_ID = "19099900"
 API_HASH = "2b445de78e5baf012a0793e60bd4fbf5"
 BOT_TOKEN = "6206599982:AAGELlIUapiHd88l5z4YuVwXp1h3tHMfotY"
 RAPIDAPI_KEY = "e738a41537msh518a25cf253209fp13958fjsn07ed13e97c48"
+
 
 # Initialize the Pyrogram client
 app = Client("my_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
@@ -44,12 +45,12 @@ async def cartoonize_image(client, message):
     
     if result.get("success"):
         cartoon_image_path = result["url"]
-        await message.reply_photo(InputFile(cartoon_image_path))
+        await message.reply_photo(photo=cartoon_image_path, quote=True)
     else:
         await message.reply_text("Failed to cartoonize the image. Please try again.")
 
 @Client.on_inline_query()
-async def inline_query(client, query: InlineQuery):
+async def inline_query(client, query):
     if query.query == "":
         return
     
@@ -75,12 +76,12 @@ async def inline_query(client, query: InlineQuery):
         cartoon_image_path = result["url"]
         caption = "Cartoonized by your bot!"
         photo_result = InlineQueryResultPhoto(
-            id="1",
             photo_url=cartoon_image_path,
             thumb_url=cartoon_image_path,
             caption=caption
         )
         await query.answer([photo_result])
 
+print("started") 
 # Start the Pyrogram client
 app.run()
