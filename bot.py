@@ -29,9 +29,9 @@ async def cartoonize_image(client, message):
     file_id = photo.file_id
     file_path = await client.download_media(file_id)
     
-    files = {
-        "image": (file_path, open(file_path, "rb")),
-        "type": (None, "anime")
+    payload = {
+        "image": open(file_path, "rb"),
+        "type": "anime"
     }
     
     headers = {
@@ -39,7 +39,7 @@ async def cartoonize_image(client, message):
         "X-RapidAPI-Host": "cartoon-yourself.p.rapidapi.com"
     }
     
-    response = requests.post(url, files=files, headers=headers)
+    response = requests.post(url, files=payload, headers=headers)
     result = response.json()
     
     if result.get("success"):
@@ -58,9 +58,9 @@ async def inline_query(client, query: InlineQuery):
     file_id = query.from_user.id
     file_path = await client.download_media(query.from_user.photo.big_file_id)
     
-    files = {
-        "image": (file_path, open(file_path, "rb")),
-        "type": (None, "anime")
+    payload = {
+        "image": open(file_path, "rb"),
+        "type": "anime"
     }
     
     headers = {
@@ -68,7 +68,7 @@ async def inline_query(client, query: InlineQuery):
         "X-RapidAPI-Host": "cartoon-yourself.p.rapidapi.com"
     }
     
-    response = requests.post(url, files=files, headers=headers)
+    response = requests.post(url, files=payload, headers=headers)
     result = response.json()
     
     if result.get("success"):
